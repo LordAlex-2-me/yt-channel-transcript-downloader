@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Transcript & Metadata Extractor</title>
+    <meta name="description" content="Extract ONLY YouTube channel transcripts and metadata rapidly with zero media streaming.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation / Brand -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        <path d="M13 8H7"></path>
+                        <path d="M17 12H7"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h2>ScriptVault</h2>
+                    <span class="badge">YouTube Transcripts</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="extractor">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Extractor</span>
+                </button>
+                <button class="nav-item" data-tab="explorer">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Downloads Vault</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="stat-card">
+                    <span class="stat-label">System Mode</span>
+                    <span class="stat-value"><span class="status-dot online"></span> Text-Only (Zero Media)</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top App Bar -->
+            <header class="top-bar">
+                <h1 id="page-title">Channel Transcript Extractor</h1>
+                <div class="header-actions">
+                    <button id="btn-refresh-vault" class="btn btn-secondary" title="Refresh Downloads">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                        Sync Vault
+                    </button>
+                </div>
+            </header>
+
+            <!-- Tab 1: Extractor View -->
+            <section id="tab-extractor" class="tab-content active">
+                <div class="grid-container">
+                    <!-- Config Form Card -->
+                    <div class="card glass-panel">
+                        <div class="card-header">
+                            <h3>Start Channel Extraction</h3>
+                            <p class="subtitle">Enter any YouTube channel URL, handle (e.g., @mkbhd), or playlist link.</p>
+                        </div>
+                        <form id="extract-form" class="extract-form">
+                            <div class="form-group">
+                                <label for="channel-url">YouTube Channel URL / Handle</label>
+                                <div class="input-wrapper">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                                    <input type="text" id="channel-url" placeholder="e.g. https://youtube.com/@Veritasium or @Veritasium" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Export Formats</label>
+                                    <div class="checkbox-group">
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="format" value="txt" checked>
+                                            <span class="custom-check"></span> Plain Text (.txt)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="format" value="srt" checked>
+                                            <span class="custom-check"></span> Subtitles (.srt)
+                                        </label>
+                                        <label class="checkbox-label">
+                                            <input type="checkbox" name="format" value="json" checked>
+                                            <span class="custom-check"></span> Data JSON (.json)
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="video-limit">Max Videos (Optional)</label>
+                                    <input type="number" id="video-limit" placeholder="All videos" min="1" max="5000">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="language-codes">Preferred Languages (Comma separated codes)</label>
+                                <input type="text" id="language-codes" value="en, es, fr, de" placeholder="en, es, fr">
+                            </div>
+
+                            <button type="submit" id="btn-submit" class="btn btn-primary btn-block">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="8 17 12 21 16 17"></polyline><line x1="12" y1="12" x2="12" y2="21"></line><path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"></path></svg>
+                                Extract Transcripts & Metadata
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Live Progress Monitor -->
+                    <div class="card glass-panel monitor-card">
+                        <div class="card-header">
+                            <h3>Live Extraction Console</h3>
+                            <span id="job-status-badge" class="status-pill idle">Idle</span>
+                        </div>
+                        <div class="monitor-content">
+                            <div class="progress-box">
+                                <div class="progress-header">
+                                    <span id="progress-text">Ready to extract</span>
+                                    <span id="progress-percent">0%</span>
+                                </div>
+                                <div class="progress-bar-bg">
+                                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+
+                            <div class="metrics-grid">
+                                <div class="metric-box">
+                                    <span class="metric-val" id="metric-total">0</span>
+                                    <span class="metric-lbl">Total Channel Videos</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-val success" id="metric-success">0</span>
+                                    <span class="metric-lbl">Transcripts Fetched</span>
+                                </div>
+                                <div class="metric-box">
+                                    <span class="metric-val warning" id="metric-unavailable">0</span>
+                                    <span class="metric-lbl">No Captions / Failed</span>
+                                </div>
+                            </div>
+
+                            <div class="log-console" id="log-console">
+                                <div class="log-line info">[System ready] Select a YouTube channel to extract captions.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Explorer / Vault View -->
+            <section id="tab-explorer" class="tab-content">
+                <div class="vault-header">
+                    <div class="search-wrapper">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="vault-search" placeholder="Search saved channels or video titles...">
+                    </div>
+                </div>
+
+                <div id="channels-list" class="channels-grid">
+                    <!-- Channel cards will be injected here dynamically -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Transcript Viewer Modal -->
+    <div id="transcript-modal" class="modal-overlay">
+        <div class="modal-container glass-panel">
+            <div class="modal-header">
+                <div class="modal-title-box">
+                    <h3 id="modal-title">Transcript Viewer</h3>
+                    <span id="modal-subtitle" class="modal-subtitle">Video Title</span>
+                </div>
+                <button id="modal-close" class="btn-icon">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="modal-content" class="transcript-code"></pre>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-copy" class="btn btn-secondary">Copy Content</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
