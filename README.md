@@ -1,5 +1,4 @@
-#  ScriptVault: YouTube Channel Transcript & Metadata Extractor
-(make an issue if the name is trash)
+#  ScriptVault: YouTube Channel Transcript & Metadata Extractor (make an issue if the name is trash)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)](https://fastapi.tiangolo.com/)
@@ -38,7 +37,7 @@ By eliminating audio and video media downloads entirely, ScriptVault processes e
    cd yt-channel-transcript-downloader
    ```
 
-2. **Create a Virtual Environment (Recommended)**
+2. **Create a Virtual Environment (tbh you really don't need to do this)**
    ```bash
    python -m venv venv
    # On Windows:
@@ -56,7 +55,7 @@ By eliminating audio and video media downloads entirely, ScriptVault processes e
 
 ##  Usage
 
-###  Method 1: Web Dashboard (NOT Recommended)
+###  Method 1: (NOT Recommended) Web Dashboard 
 
 Start the local web application server:
 ```bash
@@ -71,7 +70,7 @@ Open **`http://localhost:8000`** in your web browser.
 
 ---
 
-###  Method 2: Command-Line Interface (CLI) <--- much better
+###  Method 2: much better ---> Command-Line Interface (CLI) 
 
 Run batch downloads directly from your terminal:
 
