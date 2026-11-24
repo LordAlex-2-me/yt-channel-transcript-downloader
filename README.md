@@ -8,6 +8,8 @@
 
 By eliminating audio and video media downloads entirely, ScriptVault processes entire channels with thousands of videos in minutes, consuming minimal network bandwidth and disk storage.
 
+The primary purpose was a tool to aid the training of AI models off a YouTuber's catalogue.
+
 ---
 
 ##  Features
@@ -33,7 +35,7 @@ By eliminating audio and video media downloads entirely, ScriptVault processes e
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/yt-channel-transcript-downloader.git
+   git clone https://github.com/LordAlex-2-me/yt-channel-transcript-downloader.git
    cd yt-channel-transcript-downloader
    ```
 
