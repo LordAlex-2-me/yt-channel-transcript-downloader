@@ -2,7 +2,6 @@
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)](https://fastapi.tiangolo.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 **ScriptVault** is a high-performance, lightweight Python web and CLI application engineered to extract **ONLY transcripts (captions/subtitles) and metadata** from any YouTube channel, playlist, or batch of videos. 
 
